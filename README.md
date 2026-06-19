@@ -9,9 +9,9 @@ An advanced, AI-powered Text-to-SQL data analytics platform that allows users to
 - **Advanced Visualizations**: Automatically chooses the best chart type (Bar, Line, Pie, etc.) based on the query results.
 - **Agentic Workflow**: Uses an intelligent reasoning graph to self-correct SQL syntax errors and validate queries before execution.
 
-  <img width="1918" height="915" alt="Screenshot 2026-06-19 204632" src="https://github.com/user-attachments/assets/425e63d8-1736-41c9-b4e4-a298ad50dbf1" />
-  <img width="1908" height="917" alt="image" src="https://github.com/user-attachments/assets/a3e173f7-2b8e-469b-88c0-a1d62993d7ba" />
-  <img width="1918" height="917" alt="image" src="https://github.com/user-attachments/assets/0ea65e3a-3675-43c3-82ce-17f9160d96a4" />
+ <img width="1918" height="915" alt="Screenshot 2026-06-19 204632" src="https://github.com/user-attachments/assets/15bfc67e-46f4-4b0f-9d98-460391ed76dc" />
+ <img width="1908" height="917" alt="Screenshot 2026-06-19 212104" src="https://github.com/user-attachments/assets/060fb6f4-0b2a-411d-8da6-d3116e93de83" />
+<img width="1918" height="917" alt="Screenshot 2026-06-19 212120" src="https://github.com/user-attachments/assets/eabdd55a-59c9-4f7e-a5e3-cd45b6467e3a" />
   
 ## Architecture
 This project is built using a modern full-stack architecture:
