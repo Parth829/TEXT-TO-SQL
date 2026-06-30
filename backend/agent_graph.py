@@ -17,9 +17,9 @@ load_dotenv()
 # Initialize LLM - Groq API
 llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.1)
 
-# ============================================================
+
 # Standalone ML functions (called on-demand from API endpoints)
-# ============================================================
+
 
 def _select_forecast_model(df: pd.DataFrame, date_col: str, metric_col: str) -> dict:
     """
