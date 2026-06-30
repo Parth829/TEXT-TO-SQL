@@ -14,4 +14,3 @@ sqlalchemy
 pandas
 psycopg2-binary
 requests
-reportlab
