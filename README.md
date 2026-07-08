@@ -32,52 +32,59 @@ graph TD
     classDef error fill:#ef4444,stroke:#7f1d1d,stroke-width:2px,color:#fff;
 
     %% Components
-    User((User)) -->|Natural Language Query| UI[React + Vite Frontend]
-    UI -->|POST /api/chat| API[FastAPI Backend]
+    User((User)) -->|"Natural Language Query"| UI["React + Vite Frontend"]
+    UI -->|"POST /api/chat"| API["FastAPI Backend"]
 
-    subgraph LangGraph Orchestration
-        API --> A[Clarify & Plan Agent]
-        A --> B[Schema RAG Agent]
-        B -.->|Retrieve Metadata| VDB[(ChromaDB Vector Store)]
-        B --> C[SQL Generator Agent]
-        
-        C --> D{Guardrail Node}
-        D -->|Unsafe| C
-        D -->|Safe (Read-Only)| E[Execution Agent]
-        
-        E -.->|Run Query| DB[(PostgreSQL / Data Lakes)]
-        
-        E -->|Execution Error| F[Self-Correction Node]
-        F -->|Fix Syntax/Columns| C
-        
-        E -->|Success DataFrame| G[Forecasting Agent]
-        G -.->|Prophet Time-Series| G
-        
-        G --> H[Insight & SHAP Agent]
-        H -.->|XGBoost Feature Importance| H
-        
-        H --> I[Dashboard Design Agent]
+    subgraph "LangGraph Orchestration"
+        API --> A["Clarify & Plan Agent"]
+        A --> B["Schema RAG Agent"]
+        B -.->|"Retrieve Metadata"| VDB[("ChromaDB Vector Store")]
+        B --> C["SQL Generator Agent"]
+
+        C --> D{"Guardrail Node"}
+        D -->|"Unsafe"| C
+        D -->|"Safe (Read-Only)"| E["Execution Agent"]
+
+        E -.->|"Run Query"| DB[("PostgreSQL / Data Lakes")]
+
+        E -->|"Execution Error"| F["Self-Correction Node"]
+        F -->|"Fix Syntax/Columns"| C
+
+        E -->|"Success DataFrame"| G["Forecasting Agent"]
+        G -.->|"Prophet Time-Series"| G
+
+        G --> H["Insight & SHAP Agent"]
+        H -.->|"XGBoost Feature Importance"| H
+
+        H --> I["Dashboard Design Agent"]
     end
 
-    I -->|JSON Dashboard Layout| API
-    API -->|Response & Insights| UI
-    
+    I -->|"JSON Dashboard Layout"| API
+    API -->|"Response & Insights"| UI
+
     %% Styling Assignment
-    class UI,User frontend;
+    class User,UI frontend;
     class API backend;
     class A,B,C,E,G,H,I agent;
     class D,F error;
     class VDB,DB db;
+```
 
+# Getting Started
 
-## Getting Started
+## 1. Backend Setup
 
-### 1. Backend Setup
 Navigate into the backend and start the FastAPI server:
+
 ```bash
 # Create and activate a virtual environment
 python -m venv venv
-venv\Scripts\activate  # On Windows
+
+# On Windows
+venv\Scripts\activate
+
+# On macOS/Linux
+source venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
