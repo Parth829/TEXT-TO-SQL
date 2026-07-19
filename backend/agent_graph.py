@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Initialize LLM - Groq API
+
 llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.1)
 
 
@@ -34,10 +34,10 @@ def _select_forecast_model(df: pd.DataFrame, date_col: str, metric_col: str) -> 
     if n_rows < 10:
         return {"model": "linear", "reason": "Too few data points (<10) for complex models"}
     
-    # Prepare time series
+   
     ts = df.set_index(date_col)[metric_col].sort_index()
     
-    # Check stationarity with Augmented Dickey-Fuller test
+    
     try:
         from statsmodels.tsa.stattools import adfuller
         adf_result = adfuller(ts.dropna(), autolag='AIC')
@@ -45,7 +45,7 @@ def _select_forecast_model(df: pd.DataFrame, date_col: str, metric_col: str) -> 
     except Exception:
         is_stationary = False
     
-    # Check for seasonality — compare variance across months
+    
     has_seasonality = False
     try:
         if n_rows >= 24:  # Need at least 2 years for seasonality check
@@ -55,7 +55,7 @@ def _select_forecast_model(df: pd.DataFrame, date_col: str, metric_col: str) -> 
     except Exception:
         pass
     
-    # Check if multiple numeric features are available for ML
+    
     numeric_cols = df.select_dtypes(include=[np.number]).columns.tolist()
     has_features = len(numeric_cols) > 2  # More than just the target + id
     
@@ -288,9 +288,7 @@ def run_shap_analysis(sql_query: str, query: str) -> dict:
         return {"error": str(e)}
 
 
-# ============================================================
-# Graph Agent Nodes
-# ============================================================
+
 
 def clarification_agent(state: AgentState) -> AgentState:
     """
@@ -301,7 +299,7 @@ def clarification_agent(state: AgentState) -> AgentState:
     """
     state.timeline.append("✓ Intent Agent: Analyzing request")
     
-    # Fast local heuristic for simple conversational greetings (0 latency)
+    
     query_lower = state.query.lower().strip()
     greetings = ['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening',
                  'how are you', 'sup', 'yo', 'thanks', 'thank you', 'bye', 'goodbye']
