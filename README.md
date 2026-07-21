@@ -1,4 +1,4 @@
-# Text-to-SQL Analytics Agent 
+# QueryPilot AI
 
 An advanced, AI-powered Text-to-SQL data analytics platform that allows users to ask natural language questions and instantly receive SQL queries, data visualizations, and automated insights from their connected databases.
 
